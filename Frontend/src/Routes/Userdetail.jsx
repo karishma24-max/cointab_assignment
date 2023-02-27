@@ -8,7 +8,7 @@ const Userdetail = () => {
     const [gender,setgender]=useState("")
     const [age,setAge]=useState("")
     useEffect(()=>{
-        axios.get(`http://localhost:8080/userdetail?page=${page}&limit=10&gender=${gender}&age=${age}`).then(res=>setData(res.data))
+        axios.get(`https://mushy-ox-trench-coat.cyclic.app/userdetail?page=${page}&limit=10&gender=${gender}&age=${age}`).then(res=>setData(res.data))
     },[page,gender,age])
     const handlecount=()=>{
 
