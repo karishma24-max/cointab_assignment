@@ -39,56 +39,47 @@ let data= await User.remove()
 server.get("/userdetail",async(req,res)=>{
     const {page,limit,gender,age}=req.query
     
-    try{
-        let str =""
-        let datanew= await User.count()
-        
-        res.send(datanew+" ")
-    }
-    catch(e)
-    {
-        res.send(e.message)
-    }
-   
-    // //  if(gender &&age)
-    // // {
-    // //     if(age=="greater")
-    // //     {
-    // // var data=await User.find({gender:gender,"dob.age":{$gt:50}}).skip(skip).limit(limit)
-    // //     }
-    // //     else
-    // //     {
-    // //         var data=await User.find({gender:gender,"dob.age":{$lt:50}}).skip(skip).limit(limit)    
-    // //     }
-    // // }
-    //  if(age)
-    // {
-       
-    //     if(age=="greater")
-    //     {
-    // var data=await User.find({"dob.age":{$gt:50}}).skip(skip).limit(limit)
-    //     }
-    //     else if (age=="greaterji")
-    //     {
-    //         var data=await User.find({"dob.age":{$gte:30}}).skip(skip).limit(limit)  
-    //     }
-    //     else
-    //     {
-    //         var data=await User.find({"dob.age":{$lt:50}}).skip(skip).limit(limit)    
-    //     } 
-    // }
-    // else if(gender)
-    // {
-    //     var data=await User.find({gender:gender}).skip(skip).limit(limit)  
-    // }
-   
-    // else
-    // {
-    //     var data=await User.find().skip(skip).limit(limit)   
-    // }
     
-    // //console.log(dataji)
-    // res.send(data)
+    const skip=(page-1)*10
+     if(gender &&age)
+    {
+        if(age=="greater")
+        {
+    var data=await User.find({gender:gender,"dob.age":{$gt:50}}).skip(skip).limit(limit)
+        }
+        else
+        {
+            var data=await User.find({gender:gender,"dob.age":{$lt:50}}).skip(skip).limit(limit)    
+        }
+    }
+    else if(age)
+    {
+       
+        if(age=="greater")
+        {
+    var data=await User.find({"dob.age":{$gt:50}}).skip(skip).limit(limit)
+        }
+        else if (age=="greaterji")
+        {
+            var data=await User.find({"dob.age":{$gte:30}}).skip(skip).limit(limit)  
+        }
+        else
+        {
+            var data=await User.find({"dob.age":{$lt:50}}).skip(skip).limit(limit)    
+        } 
+    }
+    else if(gender)
+    {
+        var data=await User.find({gender:gender}).skip(skip).limit(limit)  
+    }
+   
+    else
+    {
+        var data=await User.find().skip(skip).limit(limit)   
+    }
+    
+    //console.log(dataji)
+    res.send(data)
 })
 
 server.listen(8080,async(req,res)=>{
